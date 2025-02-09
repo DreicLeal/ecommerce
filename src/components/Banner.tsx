@@ -1,9 +1,9 @@
-'use client'
+"use client";
 import { useLanguageContext } from "@/contexts/languageContext/languageContext";
 import BannerImg from "./BannerImg";
 import products from "@/utils/products";
 import { IProduct } from "@/contexts/productContext";
-import {useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Banner() {
   const [selected, setSelected] = useState<IProduct[]>([]);
@@ -11,7 +11,6 @@ export default function Banner() {
     new Map(products.map((product) => [product.category, product])).values()
   );
 
-  
   useEffect(() => {
     const shuffled = [...uniquePromoBanner].sort(() => Math.random() - 0.5);
     setSelected(shuffled.slice(0, 3));

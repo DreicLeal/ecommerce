@@ -1,8 +1,13 @@
-import { IProduct } from "@/contexts/productContext";import Image from "next/image";
+import { IProduct } from "@/contexts/productContext";
+import Image from "next/image";
 import Details from "./ProductDetail";
 import ReviewSection from "../ReviewSection";
-export default function ProductDetailClient ({product}: {product?:IProduct}) {
-return (
+export default function ProductDetailClient({
+  product,
+}: {
+  product?: IProduct;
+}) {
+  return (
     <>
       {product ? (
         <>
@@ -24,5 +29,5 @@ return (
         <p className="text-center text-red-500">Product not found</p>
       )}
     </>
-)
+  );
 }
