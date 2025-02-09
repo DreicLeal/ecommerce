@@ -11,6 +11,7 @@ export default function Banner() {
     new Map(products.map((product) => [product.category, product])).values()
   );
 
+  
   useEffect(() => {
     const shuffled = [...uniquePromoBanner].sort(() => Math.random() - 0.5);
     setSelected(shuffled.slice(0, 3));
