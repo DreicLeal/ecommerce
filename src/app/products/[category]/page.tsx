@@ -1,6 +1,5 @@
 import products from "@/utils/products";
-
-import ProductsClient from "./productsClient";
+import ProductsClient from "./ProductsClient";
 
 type IParams = {
   category: string;

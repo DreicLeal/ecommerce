@@ -5,7 +5,7 @@ import { IProduct, useProductContext } from "@/contexts/productContext";
 import SalePrice from "../Price";
 
 export default function ProductCard({ product }: { product: IProduct }) {
-  const { languageSpreader, language} = useLanguageContext();
+  const { languageSpreader, language } = useLanguageContext();
   const { calcRatingStars, handleCartItems, details } = useProductContext();
 
   const currentLanguage = language.toLowerCase() as "english" | "portuguese";

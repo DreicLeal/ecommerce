@@ -17,7 +17,9 @@ export default function SalePrice({ product }: { product: IProduct }) {
             <p className="text-base self-center text-[var(--primary)]">
               {currenciesSymbol[currency]}
             </p>
-            <p className="text-2xl text-[var(--primary)] font-bold">{isSale.toFixed(2)}</p>
+            <p className="text-2xl text-[var(--primary)] font-bold">
+              {isSale.toFixed(2)}
+            </p>
           </div>
         </div>
       ) : (
