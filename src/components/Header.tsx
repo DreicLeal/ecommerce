@@ -5,7 +5,7 @@ import { useCurrencyContext } from "@/contexts/currencyContext";
 import Image from "next/image";
 import cart from "../../public/cart.svg";
 import menu from "../../public/menu.svg";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Nav from "./Nav";
 import { useProductContext } from "@/contexts/productContext";
 import { useRouter } from "next/navigation";
@@ -16,6 +16,7 @@ export default function Header() {
   const { currency, setCurrency } = useCurrencyContext();
   const { cartAmount } = useProductContext();
   const [menuOpen, setMenuOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement | null>(null);
 
   const router = useRouter();
 
@@ -28,6 +29,24 @@ export default function Header() {
     router.push("/cart");
   };
 
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setMenuOpen(false);
+      }
+    }
+
+    if (menuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [menuOpen]);
+
   return (
     <header className="flex z-20 items-center bg-[var(--background)] justify-between p-2 gap-2 w-full fixed top-0 h-14">
       <Image
@@ -37,7 +56,9 @@ export default function Header() {
         alt="Menu button"
       />
       {menuOpen && (
-        <div className="flex absolute top-8 left-7 flex-col border rounded-md bg-[var(--card-bg)] z-10">
+        <div 
+        ref={menuRef} 
+        className="flex absolute top-8 left-7 flex-col border rounded-md bg-[var(--card-bg)] z-10">
           <Nav />{" "}
           <select
             className="bg-[var(--card-bg)] text-[var(--text)] border border-[var(--secondary)] p-2 "
