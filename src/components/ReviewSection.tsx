@@ -1,12 +1,11 @@
-'use client'
+"use client";
 import { FaStar, FaCheckCircle } from "react-icons/fa";
 import reviews from "@/utils/mockReviews";
 import { useLanguageContext } from "@/contexts/languageContext/languageContext";
 
 export default function ReviewSection() {
+  const { languageSpreader } = useLanguageContext();
 
-  const { languageSpreader} = useLanguageContext()
-  
   return (
     <div className="w-[95%] mx-auto mt-8 p-4 bg-[var(--card-bg)] rounded-lg shadow-md">
       <h2 className="text-xl lg:text-2xl font-bold text-[var(--text)] mb-4">
@@ -14,7 +13,9 @@ export default function ReviewSection() {
       </h2>
 
       {reviews.length === 0 ? (
-        <p className="text-center text-gray-500">{languageSpreader.reviewSection.noReviews}</p>
+        <p className="text-center text-gray-500">
+          {languageSpreader.reviewSection.noReviews}
+        </p>
       ) : (
         <div className="flex flex-col gap-6">
           {reviews.map((review) => (
@@ -47,7 +48,8 @@ export default function ReviewSection() {
               </p>
               {review.verifiedPurchase && (
                 <div className="flex items-center text-green-600 text-sm font-semibold mt-2">
-                  <FaCheckCircle className="mr-1" /> {languageSpreader.reviewSection.verifiedPurchase}
+                  <FaCheckCircle className="mr-1" />{" "}
+                  {languageSpreader.reviewSection.verifiedPurchase}
                 </div>
               )}
             </div>

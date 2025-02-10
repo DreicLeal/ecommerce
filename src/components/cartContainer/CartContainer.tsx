@@ -14,13 +14,13 @@ export default function CartContainer() {
 
   const router = useRouter();
 
-  const [hasMounted, setHasMounted] = useState(false)
+  const [hasMounted, setHasMounted] = useState(false);
 
   useEffect(() => {
-    setHasMounted(true)
-  }, [])
+    setHasMounted(true);
+  }, []);
 
-  if(!hasMounted) return null;
+  if (!hasMounted) return null;
 
   const totalValue = cartItems.reduce(
     (acc, act) =>

@@ -1,3 +1,3 @@
-export default function AboutPage () {
-    return <h2>coming soon</h2>
+export default function AboutPage() {
+  return <h2>Coming soon</h2>;
 }
