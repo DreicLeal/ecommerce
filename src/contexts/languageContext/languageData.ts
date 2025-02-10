@@ -25,6 +25,17 @@ export type LanguageDataType = {
     noReviews: string;
     verifiedPurchase: string;
   };
+  about: {
+    hello: string;
+    introduction: string;
+    whatIDoTitle: string;
+    whatIDo: string;
+    keyStrengthsTitle: string;
+    specialization: string;
+    knowledge: string;
+    experience: string;
+    familiarity: string;
+  };
 };
 
 // Define possible language keys dynamically
@@ -57,8 +68,23 @@ export const languageData: LanguageSpreader = {
     },
     reviewSection: {
       customerReviews: "Customer Reviews",
-      noReviews: "No reviews yets.",
+      noReviews: "No reviews yet.",
       verifiedPurchase: "Verified Purchase",
+    },
+    about: {
+      hello: "Hello!",
+      introduction:
+        "I'm a Front-End Developer passionate about creating intuitive and high-performance interfaces using React, Next.js, and TypeScript.",
+      whatIDoTitle: "What I Do",
+      whatIDo:
+        "I develop modern web applications using React and Next.js, ensuring SEO optimization, SSR (Server-Side Rendering), and performance improvements. I focus on componentization, state management, and API integrations.",
+      keyStrengthsTitle: "Key Strengths",
+      specialization: "Expertise in React, Next.js, and TypeScript",
+      knowledge:
+        "Knowledge in SSR (Server-Side Rendering), SSG (Static Site Generation), and performance optimization",
+      experience:
+        "Experience with Google Tag Manager, Styled Components, and TailwindCSS",
+      familiarity: "Familiarity with Scrum, Trello, and agile methodologies",
     },
   },
   PORTUGUESE: {
@@ -87,6 +113,21 @@ export const languageData: LanguageSpreader = {
       customerReviews: "Avaliações dos clientes",
       noReviews: "Ainda não há avaliações.",
       verifiedPurchase: "Compra Verificada",
+    },
+    about: {
+      hello: "Olá!",
+      introduction:
+        "Sou um Desenvolvedor Front-End apaixonado por criar interfaces intuitivas e de alto desempenho usando React, Next.js e TypeScript.",
+      whatIDoTitle: "O que eu faço?",
+      whatIDo:
+        "Desenvolvo aplicações web modernas utilizando React e Next.js, garantindo otimização de SEO, SSR (Server-Side Rendering) e melhorias de performance. Foco na componentização, gerenciamento de estado e integração de APIs.",
+      keyStrengthsTitle: "Diferenciais",
+      specialization: "Especialização em React, Next.js e TypeScript",
+      knowledge:
+        "Conhecimento em SSR (Server-Side Rendering), SSG (Static Site Generation) e otimização de performance",
+      experience:
+        "Experiência com Google Tag Manager, Styled Components e TailwindCSS",
+      familiarity: "Familiaridade com Scrum, Trello e metodologias ágeis",
     },
   },
 };
