@@ -9,7 +9,7 @@ import {
   useEffect,
   useState,
 } from "react";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import rating from "../../public/rating.png";
 import star from "../../public/star.png";
 import { useRouter } from "next/navigation";
@@ -20,8 +20,10 @@ export interface IProductContext {
   cartItems: IProduct[];
   cartAmount: number;
   details(category: string, id: string): void;
-  setFoundProducts: Dispatch<SetStateAction<IProduct[]>>
-  foundProducts: IProduct[]
+  setFoundProducts: Dispatch<SetStateAction<IProduct[]>>;
+  foundProducts: IProduct[];
+  productsList: IProduct[];
+  
 }
 
 export type IProduct = {
@@ -31,7 +33,7 @@ export type IProduct = {
   price: number;
   stock: number;
   rating: number;
-  image: StaticImageData;
+  image: string;
   sale: boolean;
   quantity: number;
   description: {
@@ -43,9 +45,21 @@ export type IProduct = {
 const ProductContext = createContext<IProductContext>({} as IProductContext);
 
 export default function ProductProvider({ children }: { children: ReactNode }) {
+  const [productsList, setProductsList] = useState<IProduct[]>([]);
+
+  useEffect(() => {
+    async function fetchProducts() {
+      const response = await fetch(
+        "https://ecommerce-json-server-jvhp.onrender.com/products"
+      );
+      const list = await response.json();
+      setProductsList(list);
+    }
+    fetchProducts();
+  }, []);
+
   const [cartItems, setCartItems] = useState<IProduct[]>(() => {
     try {
-
       const storedCart = localStorage.getItem("cartItems");
       return storedCart ? JSON.parse(storedCart) : [];
     } catch (error) {
@@ -73,13 +87,11 @@ export default function ProductProvider({ children }: { children: ReactNode }) {
     setCartAmount(cartTotalItems);
   }, [cartItems]);
 
-
   const router = useRouter();
-
 
   function details(category: string, id: string) {
     router.push(`/products/${category}/${id}`);
-    setFoundProducts([])
+    setFoundProducts([]);
   }
 
   function handleCartItems(itemToHandle: IProduct, operator: "add" | "sub") {
@@ -100,7 +112,6 @@ export default function ProductProvider({ children }: { children: ReactNode }) {
         return updatedCart;
       }, [] as IProduct[]);
 
-      // If item does not exist and we're adding, add it to cart
       if (!itemExists && operator === "add") {
         updatedCart.push({ ...itemToHandle, quantity: 1 });
       }
@@ -126,7 +137,16 @@ export default function ProductProvider({ children }: { children: ReactNode }) {
 
   return (
     <ProductContext.Provider
-      value={{ calcRatingStars, handleCartItems, cartItems, cartAmount, details, foundProducts, setFoundProducts}}
+      value={{
+        calcRatingStars,
+        productsList,
+        handleCartItems,
+        cartItems,
+        cartAmount,
+        details,
+        foundProducts,
+        setFoundProducts,
+      }}
     >
       {children}
     </ProductContext.Provider>

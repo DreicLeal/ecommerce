@@ -1,22 +1,28 @@
 "use client";
 import { useLanguageContext } from "@/contexts/languageContext/languageContext";
 import BannerImg from "./BannerImg";
-import products from "@/utils/products";
-import { IProduct } from "@/contexts/productContext";
+
+import { IProduct, useProductContext } from "@/contexts/productContext";
 import { useEffect, useState } from "react";
 
 export default function Banner() {
-  const [selected, setSelected] = useState<IProduct[]>([]);
-  const uniquePromoBanner = Array.from(
-    new Map(products.map((product) => [product.category, product])).values()
-  );
-
-  useEffect(() => {
-    const shuffled = [...uniquePromoBanner].sort(() => Math.random() - 0.5);
-    setSelected(shuffled.slice(0, 3));
-  }, []);
-
   const { language, languageSpreader } = useLanguageContext();
+  const { productsList } = useProductContext();
+
+  const [selected, setSelected] = useState<IProduct[]>([]);
+  useEffect(() => {
+    if (productsList.length > 0) {
+      const uniquePromoBanner = Array.from(
+        new Map(
+          productsList.map((product) => [product.category, product])
+        ).values()
+      );
+
+      const shuffled = [...uniquePromoBanner].sort(() => Math.random() - 0.5);
+      setSelected(shuffled.slice(0, 3));
+    }
+  }, [productsList]);
+
   const bannerLanguage = language.toLowerCase() as "english" | "portuguese";
 
   return (

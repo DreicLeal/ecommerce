@@ -1,18 +1,14 @@
 "use client";
 import ProductsContainer from "@/components/productsContainer/ProductsContainer";
-import { IProduct } from "@/contexts/productContext";
+import { useProductContext } from "@/contexts/productContext";
 import { useSearchParams } from "next/navigation";
 
-type Props = {
-  category: string;
-  products: IProduct[];
-};
-
-export default function ProductsClient({ category, products }: Props) {
+export default function ProductsClient({ category }: { category: string }) {
+  const {productsList} = useProductContext()
   const searchParams = useSearchParams();
   const source = searchParams.get("source");
 
-  const filteredProducts = products.filter(
+  const filteredProducts = productsList.filter(
     (product) =>
       product.category === category &&
       (source === "banner" ? product.sale : true)
