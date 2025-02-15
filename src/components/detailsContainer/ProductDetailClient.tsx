@@ -2,6 +2,7 @@ import { IProduct } from "@/contexts/productContext";
 import Image from "next/image";
 import Details from "./ProductDetail";
 import ReviewSection from "../ReviewSection";
+import RelatedProducts from "../relatedProductsContainer/RelatedProducts";
 
 export default function ProductDetailClient({
   product,
@@ -23,6 +24,9 @@ export default function ProductDetailClient({
               />
             </div>
             <Details product={product} />
+          </div>
+          <div className="bg-[var(--secondary)] mt-8 flex justify-center">
+            <RelatedProducts category={product.category} id={product.id}/>
           </div>
           <div className="w-full mt-8">
             <ReviewSection />
