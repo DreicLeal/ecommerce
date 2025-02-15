@@ -23,6 +23,29 @@
     --card-bg: #1e1e1e; 
   }
 }
+
+@layer utilities {
+  /* Scrollbar for Webkit browsers */
+  .scrollbar::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  .scrollbar::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb {
+    background: #ff6b00; /* Adjust to your primary color */
+    border-radius: 10px;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #ff9100; /* Darker color on hover */
+  }
+}
+
 li{
   list-style: none;
 }

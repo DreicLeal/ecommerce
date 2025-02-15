@@ -14,6 +14,8 @@ export default function CartCard({ product }: { product: IProduct }) {
     <div className="p-4 gap-2 flex items-center justify-around">
       <div className="bg-white rounded-md p-2">
         <Image
+          width={20}
+          height={20}
           className="w-16 h-16 sm:w-24 sm:h-24"
           alt={product.name}
           src={product.image}
