@@ -10,7 +10,7 @@ export default function Menu() {
   const router = useRouter();
   const categories = [...new Set(productsList.map((item) => item.category))];
   return (
-    <ul className="flex flex-col gap-2 w-fit sm:w-40 mt-14 bg-slate-500">
+    <ul className="flex flex-col gap-2 w-fit sm:w-40 mt-14 bg-[var(--secondary)]">
       {categories.map((category) => (
         <li
           onClick={() => router.push(`/products/${category}?=source=menu`)}

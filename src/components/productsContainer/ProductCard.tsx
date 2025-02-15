@@ -23,8 +23,9 @@ export default function ProductCard({ product }: { product: IProduct }) {
         )}
 
         <Image
-        width={50} height={50}
-          className="w-full h-full object-cover"
+          width={200}
+          height={200}
+          className="w-[200px] h-[200px] object-cover"
           src={product.image}
           alt="Rating Star"
         />

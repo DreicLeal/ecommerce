@@ -12,7 +12,7 @@ export type LanguageDataType = {
   };
   home: {
     allProducts: string;
-    bannerTitle: string;
+    bannerButton: string;
   };
   cartContainer: {
     emptyCart: string;
@@ -38,7 +38,7 @@ export type LanguageDataType = {
   };
 };
 
-// Define possible language keys dynamically
+
 export type AvailableLanguages = "ENGLISH" | "PORTUGUESE";
 
 type LanguageSpreader = Record<AvailableLanguages, LanguageDataType>;
@@ -58,7 +58,7 @@ export const languageData: LanguageSpreader = {
     },
     home: {
       allProducts: "All Products",
-      bannerTitle: "Highlighted sales",
+      bannerButton: "Shop now",
     },
     cartContainer: {
       emptyCart: "Empty Cart",
@@ -101,7 +101,7 @@ export const languageData: LanguageSpreader = {
     },
     home: {
       allProducts: "Todos os Produtos",
-      bannerTitle: "Destaques em promoção",
+      bannerButton: "Comprar agora",
     },
     cartContainer: {
       emptyCart: "Carrinho ainda vazio",
