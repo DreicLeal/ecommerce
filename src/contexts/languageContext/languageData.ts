@@ -4,6 +4,10 @@ export type LanguageDataType = {
   };
   header: {
     input: string;
+    toast: {
+      add: string;
+      sub: string;
+    };
     nav: {
       home: string;
       about: string;
@@ -38,7 +42,6 @@ export type LanguageDataType = {
   };
 };
 
-
 export type AvailableLanguages = "ENGLISH" | "PORTUGUESE";
 
 type LanguageSpreader = Record<AvailableLanguages, LanguageDataType>;
@@ -50,6 +53,10 @@ export const languageData: LanguageSpreader = {
     },
     header: {
       input: "Look for a product",
+      toast: {
+        add: "Product successfully added!",
+        sub: "Product successfully removed!",
+      },
       nav: {
         home: "Home",
         about: "About",
@@ -93,6 +100,10 @@ export const languageData: LanguageSpreader = {
     },
     header: {
       input: "Busque um produto",
+      toast: {
+        add: "Produto adicionado com sucesso!",
+        sub: "Produto removido com sucesso!",
+      },
       nav: {
         home: "Início",
         about: "Sobre",
