@@ -107,7 +107,7 @@ export default function Header() {
 
       <div className="flex gap-4">
         <div onClick={handleCartPage} className="relative">
-          <p className="absolute right-3 text-[var(--primary)] font-semibold bg-[var(--background)]/25">
+          <p className="absolute right-1 top-[-18%] text-[var(--primary)] text-xs font-semibold bg-[var(--secondary)] p-1 text-center rounded-full">
             {cartAmount}
           </p>
           <Image
@@ -117,7 +117,7 @@ export default function Header() {
           />
         </div>
         <button
-          className={`hidden sm:flex items-center justify-center w-20 font-semibold rounded-md text-white bg-[var(--primary)] ${transition}`}
+          className={`hidden sm:flex items-center justify-center w-20 font-semibold rounded-md text-white bg-white/25 hover:bg-[var(--secondary)] active:bg-[rgb(31,114,115)] transition duration-300`}
           onClick={() => changingLanguage(languageToChange)}
         >
           PT | EN

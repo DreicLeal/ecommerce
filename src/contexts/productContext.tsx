@@ -13,6 +13,7 @@ import Image from "next/image";
 import rating from "../../public/rating.png";
 import star from "../../public/star.png";
 import { useRouter } from "next/navigation";
+import { useLanguageContext } from "./languageContext/languageContext";
 
 export interface IProductContext {
   calcRatingStars(ratingN: number): JSX.Element[];
@@ -25,7 +26,6 @@ export interface IProductContext {
   productsList: IProduct[];
   toast: boolean;
   toastMessage: string;
-  
 }
 
 export type IProduct = {
@@ -47,9 +47,10 @@ export type IProduct = {
 const ProductContext = createContext<IProductContext>({} as IProductContext);
 
 export default function ProductProvider({ children }: { children: ReactNode }) {
+const {languageSpreader} = useLanguageContext()
   const [productsList, setProductsList] = useState<IProduct[]>([]);
-const [toast, setToast] = useState(false)
-const [toastMessage, setToastMessage] = useState("")
+  const [toast, setToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
   useEffect(() => {
     async function fetchProducts() {
       const response = await fetch(
@@ -63,10 +64,10 @@ const [toastMessage, setToastMessage] = useState("")
 
   useEffect(() => {
     setTimeout(() => {
-      setToast(false)
-    setToastMessage("")
-  },3000)
-  },[toast])
+      setToast(false);
+      setToastMessage("");
+    }, 3000);
+  }, [toast]);
 
   const [cartItems, setCartItems] = useState<IProduct[]>(() => {
     try {
@@ -105,9 +106,12 @@ const [toastMessage, setToastMessage] = useState("")
   }
 
   function handleCartItems(itemToHandle: IProduct, operator: "add" | "sub") {
-    const feedbackMessage = operator === "add"? `Produto adicionado com sucesso!`: `Produto removido com sucesso`
-    setToastMessage(feedbackMessage)
-    setToast(true)
+    const feedbackMessage =
+      operator === "add"
+        ? `${languageSpreader.header.toast.add}`
+        : `${languageSpreader.header.toast.sub}`;
+    setToastMessage(feedbackMessage);
+    setToast(true);
     setCartItems((prevCart) => {
       let itemExists = false;
 
@@ -160,7 +164,7 @@ const [toastMessage, setToastMessage] = useState("")
         foundProducts,
         setFoundProducts,
         toast,
-        toastMessage
+        toastMessage,
       }}
     >
       {children}
