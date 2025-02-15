@@ -23,6 +23,8 @@ export interface IProductContext {
   setFoundProducts: Dispatch<SetStateAction<IProduct[]>>;
   foundProducts: IProduct[];
   productsList: IProduct[];
+  toast: boolean;
+  toastMessage: string;
   
 }
 
@@ -46,7 +48,8 @@ const ProductContext = createContext<IProductContext>({} as IProductContext);
 
 export default function ProductProvider({ children }: { children: ReactNode }) {
   const [productsList, setProductsList] = useState<IProduct[]>([]);
-
+const [toast, setToast] = useState(false)
+const [toastMessage, setToastMessage] = useState("")
   useEffect(() => {
     async function fetchProducts() {
       const response = await fetch(
@@ -57,6 +60,13 @@ export default function ProductProvider({ children }: { children: ReactNode }) {
     }
     fetchProducts();
   }, []);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setToast(false)
+    setToastMessage("")
+  },3000)
+  },[toast])
 
   const [cartItems, setCartItems] = useState<IProduct[]>(() => {
     try {
@@ -95,6 +105,9 @@ export default function ProductProvider({ children }: { children: ReactNode }) {
   }
 
   function handleCartItems(itemToHandle: IProduct, operator: "add" | "sub") {
+    const feedbackMessage = operator === "add"? `Produto adicionado com sucesso!`: `Produto removido com sucesso`
+    setToastMessage(feedbackMessage)
+    setToast(true)
     setCartItems((prevCart) => {
       let itemExists = false;
 
@@ -146,6 +159,8 @@ export default function ProductProvider({ children }: { children: ReactNode }) {
         details,
         foundProducts,
         setFoundProducts,
+        toast,
+        toastMessage
       }}
     >
       {children}

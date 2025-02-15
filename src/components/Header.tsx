@@ -10,11 +10,12 @@ import Nav from "./Nav";
 import { useProductContext } from "@/contexts/productContext";
 import { useRouter } from "next/navigation";
 import SearchComponent from "./SearchComponent";
+import Toast from "./Toast";
 
 export default function Header() {
   const { language, changingLanguage } = useLanguageContext();
   const { currency, setCurrency } = useCurrencyContext();
-  const { cartAmount } = useProductContext();
+  const { cartAmount, toast } = useProductContext();
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement | null>(null);
 
@@ -49,6 +50,12 @@ export default function Header() {
 
   return (
     <header className="flex z-20 items-center bg-[var(--background)] justify-between p-2 gap-2 w-full fixed top-0 h-14">
+      {toast && 
+      <div className="fixed top-2 right-2 z-20">
+
+        <Toast/>
+      </div>
+      }
       <Image
         onClick={() => setMenuOpen(!menuOpen)}
         className="flex sm:hidden relative h-8 w-8 "
