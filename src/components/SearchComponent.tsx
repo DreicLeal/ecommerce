@@ -1,19 +1,18 @@
 "use client";
 import { useProductContext } from "@/contexts/productContext";
 import SearchList from "./SearchList";
-import products from "@/utils/products";
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import search from "../../public/search.png";
 import { useLanguageContext } from "@/contexts/languageContext/languageContext";
 export default function SearchComponent() {
-  const { foundProducts, setFoundProducts } = useProductContext();
+  const { foundProducts, setFoundProducts, productsList } = useProductContext();
   const { languageSpreader } = useLanguageContext();
   const [searchedValue, setSearchedValue] = useState("");
   const searchRef = useRef<HTMLUListElement | null>(null);
   const handleChange = (value: string) => {
     setSearchedValue(value);
-    const searchResult = products.filter(
+    const searchResult = productsList.filter(
       (product) =>
         product.category.toLowerCase().includes(value.toLowerCase()) ||
         product.name.toLowerCase().includes(value.toLowerCase())

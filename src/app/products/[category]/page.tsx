@@ -1,4 +1,3 @@
-import products from "@/utils/products";
 import ProductsClient from "./ProductsClient";
 
 type IParams = {
@@ -12,5 +11,5 @@ export default async function ProductsPage({
 }) {
   const { category } = await params;
 
-  return <ProductsClient category={category} products={products} />;
+  return <ProductsClient category={category} />;
 }
